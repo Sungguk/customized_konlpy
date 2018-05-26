@@ -68,7 +68,8 @@ class SimpleSelector:
             'max_length_of_noun': 0.5,
             'num_of_nouns': -0.2,
             'num_of_words': -0.1,
-            'num_noun_is_zero': -0.5
+            'num_noun_is_zero': -0.5,
+            'num_of_Emartshop': 4.0,
         }
 
     def select(self, candidates):
@@ -81,6 +82,7 @@ class SimpleSelector:
     
     def score(self, candidate):
         num_of_nouns = len([1 for w, t in candidate if t == 'Noun'])
+        num_of_Emartshop = len([1 for w, t in candidate if t == 'Emartshop'])
         if num_of_nouns:
             max_length_of_noun = max([len(w) for w, t in candidate if t == 'Noun'])
         else:
@@ -91,5 +93,6 @@ class SimpleSelector:
         return (max_length_of_noun * self.weight.get('max_length_of_noun', 0)
                 + num_of_nouns * self.weight.get('noun_numbers', 0)
                 + num_of_words * self.weight.get('num_of_words', 0)
+                + num_of_Emartshop * self.weight.get('num_of_Emartshop', 0)
                 + num_noun_is_zero * self.weight.get('num_noun_is_zero', 0)
                )

@@ -18,5 +18,6 @@ twitter = {
     "ScreenName": "트위터 아이디",
     "Suffix": "접미사",
     "Unknown": "미등록어",
-    "Verb": "동사"
+    "Verb": "동사",
+    "Emartshop": "이마트점포"
 }

@@ -27,6 +27,7 @@ class Twitter:
     def _load_default_dictionary(self):
         directory = '%s/data/twitter/' % installpath
         self._dictionary.add_dictionary(load_dictionary('%s/josa' % directory), 'Josa')
+        self._dictionary.add_dictionary(load_dictionary('%s/emartshop' % directory), 'Emartshop')
         self._dictionary.add_dictionary(load_dictionary('%s/noun' % directory, ignore_a_syllable=True), 'Noun')
         self._dictionary.add_dictionary(load_dictionary('%s/adverb' % directory), 'Adverb')
         #self._dictionary.add_dictionary(load_dictionary(modifier_dir), 'Modifier')
