@@ -18,7 +18,6 @@ class CustomizedDictionary:
             except Exception as e:
                 print('load_dictionary error: %s'%e)
                 return []
-            
         wordset = self._pos2words.get(tag, set())
         for fname in fname_list:
             wordset.update(load(fname))

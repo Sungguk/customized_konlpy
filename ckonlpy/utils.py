@@ -1,6 +1,6 @@
 import glob
 import os
-
+from io import open
 
 installpath = os.path.dirname(os.path.realpath(__file__))
 

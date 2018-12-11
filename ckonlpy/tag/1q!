@@ -7,6 +7,7 @@ from ckonlpy.utils import installpath
 from ckonlpy.utils import load_dictionary
 from ckonlpy.utils import loadtxt
 
+
 class Twitter:
     def __init__(self, use_twitter_dictionary=True):
         self._base = KoNLPyTwitter()
@@ -21,6 +22,7 @@ class Twitter:
         templatespath = '%s/data/templates/twitter_templates0' % installpath
         templates = loadtxt(templatespath)
         templates = [tuple(template.split()) for template in templates]        
+	print(self._dictionary)
         return SimpleTemplateTagger(templates, self._dictionary, SimpleSelector())
     
     def _load_default_dictionary(self):

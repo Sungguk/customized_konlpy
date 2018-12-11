@@ -7,7 +7,6 @@ class SimpleTemplateTagger:
 
     def pos(self, eojeol):
         """eojeol: str"""
-        
         best_candidates = []
         for template in self.templates:
             n = len(eojeol)
@@ -38,7 +37,6 @@ class SimpleTemplateTagger:
             candidates = [[tagged[:2] for tagged in c] for c in candidates if c[-1][2] == n]
             if candidates:
                 best_candidates += candidates
-        
         if best_candidates:
             return self.selector.select(best_candidates)
         
@@ -69,7 +67,6 @@ class SimpleSelector:
             'num_of_nouns': -0.2,
             'num_of_words': -0.1,
             'num_noun_is_zero': -0.5,
-            'num_of_Emartshop': 4.0,
         }
 
     def select(self, candidates):
@@ -82,17 +79,14 @@ class SimpleSelector:
     
     def score(self, candidate):
         num_of_nouns = len([1 for w, t in candidate if t == 'Noun'])
-        num_of_Emartshop = len([1 for w, t in candidate if t == 'Emartshop'])
         if num_of_nouns:
             max_length_of_noun = max([len(w) for w, t in candidate if t == 'Noun'])
         else:
             max_length_of_noun = 0
         num_of_words = len(candidate)
         num_noun_is_zero = 0 if num_of_nouns else 1
-
-        return (max_length_of_noun * self.weight.get('max_length_of_noun', 0)
-                + num_of_nouns * self.weight.get('noun_numbers', 0)
+        return ( max_length_of_noun * self.weight.get('max_length_of_noun', 0)
+                + num_of_nouns * self.weight.get('num_of_nouns', 0)
                 + num_of_words * self.weight.get('num_of_words', 0)
-                + num_of_Emartshop * self.weight.get('num_of_Emartshop', 0)
                 + num_noun_is_zero * self.weight.get('num_noun_is_zero', 0)
                )
